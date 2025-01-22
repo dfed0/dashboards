@@ -1,0 +1,8 @@
+.full-page {
+display: flex;
+flex-direction: column;
+align-items: start;
+}
+.menu-content {
+    display: flex;
+}

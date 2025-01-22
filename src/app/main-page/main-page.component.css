@@ -1,0 +1,22 @@
+:root {
+}
+.text-area-static {
+    overflow: hidden;
+    padding: var(--padding-text-area);
+    width: calc(100vw - var(--margin-left-text-area));
+    height:100%;
+    /* margin-left: var(--margin-left-text-area); */
+}
+.text-area {
+    overflow: hidden;
+    padding: var(--padding-text-area);
+    width: calc(100vw - var(--margin-left-text-area));
+    height:100%;
+    margin-left: var(--margin-left-text-area);
+}
+p {
+    font-size: 112px;
+}
+/* .menu-activated {
+
+} */
