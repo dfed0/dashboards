@@ -20,7 +20,7 @@ this.uiService.scrollPosition.subscribe((value) => {
   this.scroll.set({viewport: value})
 })
 this.uiService.element.subscribe((value) => {
-  console.log('main page subs')
+  // console.log('main page subs')
     Object.assign(this.header, value['header'])
 })
   }

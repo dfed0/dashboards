@@ -6,7 +6,7 @@
 <div (scroll)="onScroll()" class="full-page">
 <app-header  (onClick)="eventConsume($event)"/>
 <div class="menu-content">
-@if(clickEvent.value === 'clicked') {
+@if(uiService.element.getValue()['menu']['button']) {
 <app-menu />
 }
 

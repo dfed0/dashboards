@@ -48,7 +48,6 @@ import { BehaviorSubject, ReplaySubject } from 'rxjs';
 })
 export class MenuComponent{
   private uiService = inject(UiService)
-
   header = {height: 0, width: 0}
   scroll = new BehaviorSubject({
     viewport: 0,
@@ -64,7 +63,6 @@ export class MenuComponent{
   } else if(this.menuState === 'menu-static' || this.menuState === 'menu-active-static') {
     this.menuState === 'menu-static' ? this.menuState = 'menu-active-static' : this.menuState = 'menu-static'
     console.log('blyab')
-
   } else {
     console.log('blya')
     return
@@ -77,13 +75,16 @@ this.uiService.scrollPosition.subscribe((value) => {
   this.menu.next(this.scroll.getValue().viewport > this.header.height? 'menu' : 'menu-static')
 })
 this.uiService.element.subscribe((value) => {
-  console.log('menu')
+  // console.log('menu')
     Object.assign(this.header, value['header'])
-    if(value['menu']['clickEvent'] === 'clicked') {
+    
+
+})
+this.uiService.events.subscribe((value) => {
+  if(value.includes('menuClick')) {
       this.onAnimate()
       console.log('ok')
     }
-
 })
   }
   

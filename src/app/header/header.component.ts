@@ -70,7 +70,7 @@ export class HeaderComponent implements AfterViewInit{
       this.scroll.set({viewport: value})
     })
     this.uiService.element.subscribe((value) => {
-      console.log('header')
+      // console.log('header')
         Object.assign(this.headerObject, value['header'])
     })
   }
