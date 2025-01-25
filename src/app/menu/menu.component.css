@@ -7,6 +7,8 @@
     height: calc(100vh - var(--top-menu) - var(--bottom-menu));
     width: calc(100vw - var(--left-menu) - var(--right-menu));
     margin-left: var(--left-menu);
+    /* transform: translateX(calc(-100vw + var(--left-menu) + var(--right-menu))); */
+    height: max-content;
 }
 .menu {
     background-color: #444;
@@ -15,4 +17,6 @@
     bottom: var(--bottom-menu);
     left: var(--left-menu);
     right: var(--right-menu);
+    height: max-content;
 }
+

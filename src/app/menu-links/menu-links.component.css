@@ -1,0 +1,11 @@
+
+div{
+    display: flex;
+    height: 5vh; 
+    justify-content: center;
+    align-items: center;
+    border-bottom: solid #363636 ;
+}
+div p {
+    color: #888;
+}

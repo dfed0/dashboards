@@ -1,7 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
 html, body {
     background-color: #363636;
-    /* overflow: hidden; */
 }
 :root {
     --padding-text-area: 5%;
@@ -10,13 +8,10 @@ html, body {
     --margin-left-text-area: calc(100vw - var(--left-menu) - var(--right-menu));;
     --top-menu: 15vh;
     --bottom-menu: 1vh;
+    --left-border-text-area: 1vw;
 }
-html {
-    /* height: 100%; */
-}
+
 body {
-    /* min-height: 100vh; */
-    /* margin: 0px; */
     width: 100vw;
 }
 * {

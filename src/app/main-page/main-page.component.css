@@ -1,18 +1,21 @@
-:root {
-}
+
 .text-area-static {
     overflow: hidden;
     padding: var(--padding-text-area);
+    padding-left: calc(var(--padding-text-area) - var(--left-border-text-area));
     width: calc(100vw - var(--margin-left-text-area));
     height:100%;
+    border-left: solid #313131 var(--left-border-text-area);
     /* margin-left: var(--margin-left-text-area); */
 }
 .text-area {
     overflow: hidden;
     padding: var(--padding-text-area);
+    padding-left: calc(var(--padding-text-area) - var(--left-border-text-area));
     width: calc(100vw - var(--margin-left-text-area));
     height:100%;
-    margin-left: var(--margin-left-text-area);
+    margin-left: calc(var(--margin-left-text-area) + 1vw);
+    border-left: solid #313131 var(--left-border-text-area);
 }
 p {
     font-size: 112px;

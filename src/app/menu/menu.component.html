@@ -1,6 +1,14 @@
-<div [class]="menu()">
-
+<div [class]="menu.getValue()" [@menuState]="menuState">
+    <!-- <p>time trouble</p>
+<p>dashboards</p>
+<p>colleagues</p>
+<p>events</p> -->
+<app-menu-links>time trouble</app-menu-links>
+<app-menu-links>dashboard</app-menu-links>
+<app-menu-links>colleagues</app-menu-links>
+<app-menu-links>events</app-menu-links>
 </div>  
 <!-- {{ot()}} -->
 
 
+ 

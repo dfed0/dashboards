@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, effect, ElementRef, HostListener, inject, Input, signal, ViewChild } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { HeaderComponent } from "./header/header.component";
 import { MenuComponent } from './menu/menu.component';
 import { UiService } from './services/ui.service';
+import { TimersService } from './services/timers.service';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +14,12 @@ import { UiService } from './services/ui.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent{
+  clickEvent = new BehaviorSubject('not clicked')
   firestore: Firestore = inject(Firestore)
   items$: Observable<any[]>
-  btnEvent = signal<any>(false)
+  btnEvent = new BehaviorSubject<any>(false)
   private uiService = inject(UiService)
+  private timersService = inject(TimersService)
   @HostListener('window:scroll', ['$event']) // чекнуть что это
 onScroll(){ // ?
   // console.log(window.scrollY)
@@ -30,13 +33,28 @@ onScroll(){ // ?
     this.items$.subscribe({
       next: value => console.log(value)
     })
-    effect(() => {
-      this.uiService.elementAdd('menu', {button: this.btnEvent()})
-    })
+      this.btnEvent.subscribe((value) => {
+        this.uiService.elementAdd('menu', {button: value, clickEvent: false})
+        console.log('btnEvent')
+        // this.uiService.elementAdd('menu', undefined, ['clickEvent', 'not clicked'])
+      })
+      this.uiService.element.subscribe((value) => {
+        console.log('app')
+        this.uiService.paddingTextArea(value['menu']['clickEvent'])
+this.clickEvent.next(value['menu']['clickEvent'])
+console.log(this.clickEvent)
+      })
+      this.clickEvent.subscribe((value) => {
+        console.log('clickEvent: ', value)
+      })
   }
   eventConsume(event: string) {
-  this.btnEvent.set(!this.btnEvent())
-  this.uiService.paddingTextArea(this.btnEvent())
+    this.uiService.elementAdd('menu', undefined , ['clickEvent', event])
+   
+  const currentValue = this.btnEvent.getValue()
+    this.timersService.timer(20000, !currentValue).then((result) => {
+      this.btnEvent.next(result)
+      // console.log(result)
+    }) 
   }
-  
 }

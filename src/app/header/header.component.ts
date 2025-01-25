@@ -69,8 +69,9 @@ export class HeaderComponent implements AfterViewInit{
     this.uiService.scrollPosition.subscribe((value) => {
       this.scroll.set({viewport: value})
     })
-    this.uiService.elementMeasurements.subscribe((value) => {
-        Object.assign(this.header, value['header'])
+    this.uiService.element.subscribe((value) => {
+      console.log('header')
+        Object.assign(this.headerObject, value['header'])
     })
   }
   
@@ -80,6 +81,6 @@ export class HeaderComponent implements AfterViewInit{
   this.uiService.elementAdd('header',{height: this.header.nativeElement.offsetHeight, width: this.header.nativeElement.offsetWidth})
   }
  
-myStatusExp = 'animate'
+// myStatusExp = 'animate'
 onClick = output<string>()
 }
