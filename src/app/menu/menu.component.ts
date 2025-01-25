@@ -32,10 +32,15 @@ import { BehaviorSubject, ReplaySubject } from 'rxjs';
       // 'var(--right-menu)': '66vw'
       'transform': 'translateX(0)'
     })),
-    transition("menu-static => menu-active-static", animate(300)),
+    // transition("menu-static => menu-active-static", animate(300)),
     transition("menu-active-static => menu-static", animate(300)),
-    transition("menu => menu-active", animate(300)),
-    transition("menu-active => menu", animate(300))
+    // transition("menu => menu-active", animate(300)),
+    transition("menu-active => menu", animate(300)),
+    transition("void => *", [
+      style({
+        'transform': 'translateX(calc(-100vw + var(--right-menu)))'
+      }),
+      animate(300)] )
     
     ])],
   templateUrl: './menu.component.html',
