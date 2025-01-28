@@ -25,11 +25,11 @@ export class UiService {
     } else {
         return
     }
+    console.log('eventHandler')
     }
     element: BehaviorSubject<{[index: string]: {[index: string]: any}}>  = new BehaviorSubject({}) // поменять тип
     elementAdd(name: string, element: { [index: string]: any}) {
         const currentElement = this.element.getValue()
-console.log(currentElement)
        
             if(!Object.keys(this.element.value).includes(name)){
                 const updatedMeasurements = {
@@ -51,15 +51,15 @@ console.log(currentElement)
                 return
             }
             
-        
+        console.log('elementAdd')
     }
     changePosition(position: any) {
      this.scrollPosition.next(position)
-     console.log(position)
+     console.log('changePosition')
     }
     paddingTextArea (activated: boolean) {
         if(activated === true){
-            document.documentElement.style.setProperty('--left-menu', '1vw')
+            document.documentElement.style.setProperty('--left-menu', '0vw')
             document.documentElement.style.setProperty('--right-menu', '66vw')
         } else if (activated === false) {
             document.documentElement.style.setProperty('--left-menu', '0')
@@ -67,5 +67,6 @@ console.log(currentElement)
         } else {
             return
         }
+        console.log('paddingTextArea')
     }
 }

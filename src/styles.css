@@ -1,5 +1,5 @@
 html, body {
-    background-color: #363636;
+    background-color: #FCFAF8;
 }
 :root {
     --padding-text-area: 5%;
@@ -8,7 +8,7 @@ html, body {
     --margin-left-text-area: calc(100vw - var(--left-menu) - var(--right-menu));;
     --top-menu: 15vh;
     --bottom-menu: 1vh;
-    --left-border-text-area: 1vw;
+    --border: 1vw;
 }
 
 body {

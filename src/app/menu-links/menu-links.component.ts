@@ -1,35 +1,56 @@
-import { Component, input } from '@angular/core';
+import { Component, input, OnChanges, OnInit, output, SimpleChanges, ViewChild } from '@angular/core';
 import { state, style, trigger } from '@angular/animations';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-menu-links',
   animations: [
-    trigger('divState', [
+    trigger('linkState', [
       state('normal', style({
-    'background-color': '#444'
     })), state('highlighted', style({
-      'background': 'radial-gradient(circle, rgba(191,191,191,1) 30%, rgba(131,131,131,1) 80%, rgba(68,68,68,1) 100%)'
+      'background-color': '#fff',
+      'border-top': 'solid #E8E8E6',
+    'box-shadow': '0px 0.3rem 0.3rem #E8E8E6',
+    'border-radius': '4rem 4rem 4rem 4rem'
     }))
     ]
   ),
   trigger('pState', [
     state('normal', style({
-      'color': '#888'
+      'color': '#464647'
     })), state('highlighted', style({
       'color': '#333'
     }))
   ])
   ],
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './menu-links.component.html',
   styleUrl: './menu-links.component.css'
 })
-export class MenuLinksComponent {
+export class MenuLinksComponent implements OnInit, OnChanges{
+  public link = input<string>()
+  constructor() {
+  }
+ 
+    
+  
+  ngOnInit() {
+    // console.log('menu-link!!!!!! ')
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    // console.log('LINK!!!!!!!',this.link(), 'CHANGES!!!!!', changes)
+  } 
+  ott(){
+    console.log(this.link())
+  }
   state='normal'
+
 mouseEnter(){
- this.state = 'highlighted'
+  this.state = 'highlighted'
 }
 mouseLeave(){ 
   this.state='normal'
 }
+// onClick = output<string>()
+
 }

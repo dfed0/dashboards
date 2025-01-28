@@ -1,11 +1,17 @@
+div {
+    /* background-color: #F1F4F5; */
 
-div{
+}
+
+div a{
     display: flex;
     height: 5vh; 
     justify-content: center;
     align-items: center;
-    border-bottom: solid #363636 ;
+    
+    text-decoration: none;
+
 }
 div p {
-    color: #888;
+    /* color: #464647; */
 }

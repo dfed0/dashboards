@@ -4,12 +4,13 @@
   }
 </ul> -->
 <div (scroll)="onScroll()" class="full-page">
-<app-header  (onClick)="eventConsume($event)"/>
+<app-header (onClick)="eventConsume($event)"/>
 <div class="menu-content">
 @if(uiService.element.getValue()['menu']['button']) {
-<app-menu />
+<app-menu (onClick)="eventConsume($event)"/>
 }
-
+<div [class]="mainPage.getValue()" [@mainPageState]="mainPageState">
 <router-outlet></router-outlet>
+</div>
 </div>
 </div>

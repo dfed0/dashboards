@@ -1,0 +1,95 @@
+.form-static{
+ height: 10vh;
+    width: 40vw;
+    margin-top: 1vh;
+    display: flex;
+    gap: 5%;
+}
+.form{
+    
+}
+.search-static {
+   
+  }
+  .search {
+    background: radial-gradient(circle at 50% 70%, rgba(220, 250, 250, 0.1), rgba(255, 200, 255, 0.1) 100%);
+    box-shadow: 0em 0.1rem 1rem #E7E7E8;
+    /* height: 10vh;
+    width: 98vw; */
+    color: #42424D;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    /* margin: auto; */
+    /* margin-top: 1vh; */
+    position: fixed;
+    left: 70vw;
+    right: 99vw;
+    top: 1vh;
+    bottom: 89vh;
+    border: none;
+    /* border-radius: 0rem 4rem 4rem 4rem; */
+    border-radius: 0rem 0.1rem 0.1rem 0.1rem;
+  }
+  .input-static{
+    height: 100%;
+    width: 70%;
+    background: radial-gradient(circle at 50% 70%, rgba(220, 250, 250, 0.1), rgba(255, 200, 255, 0.1) 100%);
+    box-shadow: 0em 0.1rem 1rem #E7E7E8;
+    border-radius: 4rem 4rem 4rem 4rem;
+    color: #42424D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    flex-wrap: wrap;
+    outline: none;
+    padding: 0 0 0 3vw;
+    font-size: 3rem;
+    
+    
+    /* margin-right: 15vw; */
+    /* padding-right: 15vw; */
+    /* border-radius: 4rem 4rem 4rem 4rem;
+    border: none;
+    background-color: transparent;
+    overflow: hidden; */
+  }
+  .input {
+
+  }
+  .button-static {
+    height: 100%;
+    width: 25%;
+    /* background: radial-gradient(circle at 50% 70%, rgba(220, 250, 250, 0.1), rgba(255, 200, 255, 0.1) 100%); */
+    background-color: #ECECEC;
+    box-shadow: 0em 0.1rem 1rem #E7E7E8;
+    border-radius: 50%;
+    color: #42424D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    flex-wrap: wrap;
+    outline: none;
+    font-size: 3rem;
+  }
+  .button-static:hover {
+    background-color: #F6F6F6;
+  }
+  .button {
+
+  }
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+/* .internal-static {
+width: 100%;
+height: 100%;
+}
+.internal{
+    
+} */
+ 

@@ -1,0 +1,12 @@
+<div [class]="menu.getValue()" [@menuState]="menuState" >
+<!-- <app-menu-links *ngFor="let link of links">{{link}}</app-menu-links> -->
+<!-- <div (click)="onClick.emit('menuClick')" link="/home">main page</div> -->
+
+<app-menu-links *ngFor="let page of pages.getValue()" (click)="onClick.emit('menuClick')" [link]="'/' + page">{{page}}</app-menu-links>
+
+
+</div>  
+<!-- {{ot()}} -->
+
+
+ 

@@ -1,53 +1,13 @@
-// import { AfterViewInit, Component, effect, ElementRef, EventEmitter, inject, OnChanges, OnInit, output, Output, signal, SimpleChanges, ViewChild } from '@angular/core';
-// import { UiService } from '../services/ui.service';
-
-// @Component({
-//   selector: 'app-header',
-//   imports: [],
-//   templateUrl: './header.component.html',
-//   // animations: [
-//   //   trigger('myAnimationTrigger', [
-//   //     transition('big => small', animate('1s cubic-bezier(0.8,0.3,0,1)'))
-//   //   ])
-//   // ],
-//   styleUrl: './header.component.css'
-// })
-// export class HeaderComponent implements OnInit, AfterViewInit{
-//   @ViewChild("header") header!: ElementRef
-//   private uiService = inject(UiService)// оптимизировать нужно
-//   scroll = {
-//     viewport: 0,
-//     heightHeader: 0
-//   } // как обновляется?
-  
-//   constructor(){ 
-//     effect(() => { // работает как было но как
-//     this.uiService.scrollPosition.subscribe((value) => {
-//     this.scroll.viewport = value
-//     console.log(this.scroll)
-//     })
-//  }) 
-//   }
-//   ngOnInit(): void {
-    
-//   }
-//   ngAfterViewInit() {
-//   this.scroll.heightHeader = this.header.nativeElement.offsetHeight
-//   console.log(this.header.nativeElement.offsetWidth)
-//   this.uiService.elementAdd('header',{height: this.header.nativeElement.offsetHeight, width: this.header.nativeElement.offsetWidth})
-//   }
- 
-// myStatusExp = 'animate'
-// onClick = output<string>()
-// }
-
-
 import { AfterViewInit, Component, computed, effect, ElementRef, EventEmitter, inject, OnChanges, OnInit, output, Output, signal, SimpleChanges, ViewChild } from '@angular/core';
 import { UiService } from '../services/ui.service';
+import { BehaviorSubject } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { RouterService } from '../services/router.service';
+import { SearchComponent } from "../search/search.component";
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [SearchComponent],
   templateUrl: './header.component.html',
   // animations: [
   //   trigger('myAnimationTrigger', [
@@ -56,25 +16,37 @@ import { UiService } from '../services/ui.service';
   // ],
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements AfterViewInit{
+export class HeaderComponent implements OnInit, AfterViewInit{
   @ViewChild("header") header!: ElementRef // почему обязательно переменная называется header?
+  private routerService = inject(RouterService)
   private uiService = inject(UiService)// оптимизировать нужно
+  title = new BehaviorSubject('')
   headerObject = {height: 0, width: 0}
-    scroll = signal({
+    scroll = new BehaviorSubject({
         viewport: 0,
     })
-      headerBlock = computed(() => this.scroll().viewport > this.headerObject.height ? true : false)
+    headerBlock = new BehaviorSubject(this.scroll.getValue().viewport > this.headerObject.height ? true : false)
     
   constructor(){ 
     this.uiService.scrollPosition.subscribe((value) => {
-      this.scroll.set({viewport: value})
+      this.scroll.next({viewport: value})
+      this.headerBlock.next(this.scroll.getValue().viewport > this.headerObject.height ? true : false)
     })
     this.uiService.element.subscribe((value) => {
-      // console.log('header')
         Object.assign(this.headerObject, value['header'])
+        console.log('header subscribe')
+
     })
-  }
+    this.routerService.currentPath.subscribe(value => {
+      this.title.next(value)
+    })
   
+  }
+ ngOnInit() {
+    // console.log('header!!!!!!!!!!! ')
+ }
+  
+ 
   ngAfterViewInit() {
   this.headerObject.height = this.header.nativeElement.offsetHeight
   // this.header.width = this.headerComponent.nativeElement.offsetWidth

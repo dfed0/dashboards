@@ -1,7 +1,10 @@
-<div (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" [@divState]="state">
+<div>
+<a (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" [@linkState]="state" [routerLink]="link()" >
     <p [@pState]="state">
        
     <ng-content></ng-content>
        
     </p> 
+</a>
+{{ott()}}
 </div>
