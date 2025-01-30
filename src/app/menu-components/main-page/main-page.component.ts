@@ -4,10 +4,11 @@ import { BehaviorSubject } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
 import { RouterService } from '../../services/router.service';
+import { DefaultButtonDirective } from '../../../directives/default-button.directive';
 
 @Component({
   selector: 'app-main-page',
-  imports: [],
+  imports: [DefaultButtonDirective],
   //  animations: [trigger('mainPageState', [
   //     state('text-area-static', style({
   //       // 'margin-left': '0'

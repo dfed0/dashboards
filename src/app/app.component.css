@@ -15,7 +15,8 @@ align-items: start;
 
     /* width: calc(100vw - var(--margin-left-text-area)); */
     height:100%;
-    font-size: 85px;
+    font-size: 2rem;
+    
     /* margin-left: calc(var(--margin-left-text-area) + 1vw); */
 
     /* border-left: solid #E0E0E0 var(--left-border-text-area); */
@@ -29,7 +30,7 @@ align-items: start;
     /* width: calc(100vw - var(--margin-left-text-area)); */
     /* transform: scaleX(calc((100vw - var(--margin-left-text-area)) / 100)); */
     height:100%;
-    font-size: 85px;
+    font-size: 2rem;
 
     margin-left: calc(var(--margin-left-text-area));
     /* border-left: solid #313131 var(--left-border-text-area); */
