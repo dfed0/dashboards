@@ -30,16 +30,18 @@ export class UiService {
     element: BehaviorSubject<{[index: string]: {[index: string]: any}}>  = new BehaviorSubject({}) // поменять тип
     elementAdd(name: string, element: { [index: string]: any}) {
         const currentElement = this.element.getValue()
-       
-            if(!Object.keys(this.element.value).includes(name)){
+            if(!Object.keys(this.element.getValue()).includes(name)){
+                // console.log('AFSBHBAFHBA: ', this.element.getValue())
+               
+
                 const updatedMeasurements = {
                 ...currentElement,
                 [name]: element
                 } 
                 this.element.next(updatedMeasurements)
-            }  else if (Object.keys(this.element.value).includes(name) && this.element.value[name] === this.element){
+            }  else if (Object.keys(this.element.getValue()).includes(name) && this.element.getValue()[name] === this.element.getValue()){
                 return
-            } else if(Object.keys(this.element.value).includes(name)) {
+            } else if(Object.keys(this.element.getValue()).includes(name)) {
                 
                 const updatedMeasurements = {
                 ...currentElement,

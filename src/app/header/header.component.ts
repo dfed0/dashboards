@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { RouterService } from '../services/router.service';
 import { SearchComponent } from "../search/search.component";
+// import { InputsService } from '../services/inputs.service';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,19 @@ import { SearchComponent } from "../search/search.component";
 })
 export class HeaderComponent implements OnInit, AfterViewInit{
   @ViewChild("header") header!: ElementRef // почему обязательно переменная называется header?
+  searchInputValue = new BehaviorSubject('')
+  // inputsService = inject(InputsService)
+  keyupEvent(value: any) {
+    // this.inputsService.inputAdd('searchInput', event)
+    // this.inputsService.inputs.subscribe(value => {
+      
+      // console.log('HEADER',value['searchInput'])
+      // this.searchInputValue.next(value['searchInput'])
+      this.searchInputValue.next(value.target.value)
+    // })
+    // this.searchInputValue.next(this.searchInputValue.getValue() + event.key)
+    // console.log('VAL ', )
+  }
   private routerService = inject(RouterService)
   private uiService = inject(UiService)// оптимизировать нужно
   title = new BehaviorSubject('')

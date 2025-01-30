@@ -5,7 +5,7 @@
     </button>
         <h1>{{title.getValue() + ' page'}}</h1>
     </header>
-    <app-search iconClass="icon" formClass="form-static" inputClass="input-static" btnClass="button-static"/>
+    <app-search iconClass="icon" formClass="form-static" inputClass="input-static" btnClass="button-static" (onKeyup)="keyupEvent($event)" [inputValue]="searchInputValue.getValue()"/>
 </div>
 
 @if(headerBlock.getValue()){
@@ -16,6 +16,6 @@
     </button>
         <h1>{{title.getValue() + ' page'}}</h1>
     </header>
-    <app-search iconClass="icon" formClass="form" inputClass="input" btnClass="button"/>
+    <app-search iconClass="icon" formClass="form" inputClass="input" btnClass="button" (onKeyup)="keyupEvent($event)" [inputValue]="searchInputValue.getValue()"/>
 </div>
 }
