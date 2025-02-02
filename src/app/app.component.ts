@@ -8,6 +8,8 @@ import { UiService } from './services/ui.service';
 import { TimersService } from './services/timers.service';
 import { RouterService } from './services/router.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 // почистить таймеры!!!
 @Component({

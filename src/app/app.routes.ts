@@ -5,6 +5,7 @@ import { DashboardsComponent } from './menu-components/dashboards/dashboards.com
 import { TimeTroubleComponent } from './menu-components/time-trouble/time-trouble.component';
 import { ColleaguesComponent } from './menu-components/colleagues/colleagues.component';
 import { EventsComponent } from './menu-components/events/events.component';
+import { AuthComponent } from './auth/auth.component';
 
 export const routes: Routes = [
     // {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -20,5 +21,6 @@ export const routes: Routes = [
     {path: 'dashboards', component: DashboardsComponent},
     {path: 'colleagues', component: ColleaguesComponent},
     {path: 'events', component: EventsComponent},
-    { path: '**', redirectTo: 'home' }
+    {path: 'auth', component: AuthComponent},
+    { path: '**', redirectTo: 'home' },
 ];
