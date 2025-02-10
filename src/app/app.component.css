@@ -10,21 +10,23 @@ align-items: start;
 .text-area-static {
     overflow: hidden;
     padding: var(--padding-text-area);
-    padding-left: calc(var(--padding-text-area) - var(--border));
+    /* padding-left: calc(var(--padding-text-area) - var(--border)); */
   color: #42424D;
 
     /* width: calc(100vw - var(--margin-left-text-area)); */
     height:100%;
     font-size: 2rem;
-    
+    /* display: flex;
+    justify-content: center; */
     /* margin-left: calc(var(--margin-left-text-area) + 1vw); */
 
     /* border-left: solid #E0E0E0 var(--left-border-text-area); */
 }
 .text-area {
     overflow: hidden;
+    flex-wrap: wrap;
     padding: var(--padding-text-area);
-    padding-left: calc(var(--padding-text-area) - var(--border));
+    /* padding-left: calc(var(--padding-text-area) - var(--border)); */
   color: #42424D;
 
     /* width: calc(100vw - var(--margin-left-text-area)); */

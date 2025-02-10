@@ -1,10 +1,12 @@
 import { Component, inject, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterService } from '../../services/router.service';
+import { ColleagueCardComponent } from "../../colleague-card/colleague-card.component";
+import { ColleaguesDirective } from '../../../directives/colleagues.directive';
 
 @Component({
   selector: 'app-colleagues',
-  imports: [],
+  imports: [ColleagueCardComponent, ColleaguesDirective],
   templateUrl: './colleagues.component.html',
   styleUrl: './colleagues.component.css'
 })

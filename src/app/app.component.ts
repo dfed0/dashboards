@@ -131,7 +131,7 @@ onAnimate(){
     this.uiService.eventHandler(event)
     this.uiService.elementAdd('menu', {button: true} )
   const currentValue = this.btnEvent.getValue()
-   this.timersService.timerAdd(301, !currentValue).then((result) => {
+   this.timersService.timerAdd(350, !currentValue).then((result) => {
       this.uiService.eventHandler(event, true)
       this.btnEvent.next(result)
     }) 
