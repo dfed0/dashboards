@@ -50,7 +50,6 @@ import { DefaultButtonDirective } from '../../../directives/default-button.direc
 })
 export class MainPageComponent implements OnInit, OnChanges{
   private routerService = inject(RouterService)
-
   constructor(private route: ActivatedRoute) {
 
   }
