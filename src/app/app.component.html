@@ -3,8 +3,9 @@
     <li>{{item.dashboard}}</li>
   }
 </ul> -->
-<div (scroll)="onScroll()" class="full-page">
-<app-header (onClick)="eventConsume($event)"/>
+@if(isAuthenticated){
+  <div (scroll)="onScroll()" class="full-page">
+<app-header (onClick)="eventConsume($event)" (logout)="onLogout()"/>
 <div class="menu-content">
 @if(uiService.element.getValue()['menu']['button']) {
 <app-menu (onClick)="eventConsume($event)"/>
@@ -14,3 +15,11 @@
 </div>
 </div>
 </div>
+}
+@if(!isAuthenticated) {
+  <div class="full-page">
+    <div class="text-area-static" style="width: 100vw;">
+    <router-outlet></router-outlet>
+    </div>
+    </div>
+}

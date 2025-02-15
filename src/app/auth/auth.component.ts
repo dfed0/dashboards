@@ -4,6 +4,8 @@ import { AuthResponceData, AuthService } from "./auth.service";
 import { LoadingSpinnerComponent } from "../shared/loading-spinner/loading-spinner.component";
 import { NgIf } from "@angular/common";
 import { Observable } from "rxjs";
+import { RouterService } from "../services/router.service";
+import { Router } from "@angular/router";
 // import { NgForm, NgModel } from "@angular/forms";
 @Component({
     selector: 'app-auth',
@@ -18,7 +20,7 @@ error: string | null = null
     onSwitchMode (){
         this.isSignupMode = !this.isSignupMode
     }
-    constructor(private authService: AuthService){}
+    constructor(private authService: AuthService, private router: Router){}
     onSubmit(authForm: NgForm) {
       
         if(!authForm.valid) {
@@ -27,18 +29,18 @@ error: string | null = null
          const email = authForm.value.email
        const password = authForm.value.password
 
-       let authObservable: Observable<AuthResponceData>
+       let authObs: Observable<AuthResponceData>
        this.isLoading = true
        if(!this.isSignupMode){
-       authObservable = this.authService.login(email, password)
+       authObs = this.authService.login(email, password)
        } else {
-       authObservable =  this.authService.signup(email, password)
+       authObs =  this.authService.signup(email, password)
        }
-       authObservable.subscribe(
+       authObs.subscribe(
         {next: resData => {
             console.log(resData)
     this.isLoading = false
-    this.error = null
+    this.router.navigate(['/home'])
            },
          error:  errorMessage => {
            console.log(errorMessage)

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { catchError, Subject, tap } from "rxjs";
 import { throwError } from "rxjs";
 import { User } from "./user.model";
+import { Router } from "@angular/router";
 export interface AuthResponceData {
     kind?: string,
     idToken: string, 
@@ -17,8 +18,8 @@ export interface AuthResponceData {
 })
 
 export class AuthService {
-    user = new Subject<User>()
-    constructor(private http: HttpClient) {
+    user = new Subject<User | null>()
+    constructor(private http: HttpClient, private router: Router) {
 
     }
     signup(email: string, password: string) {
@@ -39,6 +40,10 @@ private handleAuthentication(email: string, userId: string, token: string, expir
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000)
     const user = new User(email, userId, token, expirationDate)
     this.user.next(user)
+}
+logout () {
+    this.user.next(null)
+    this.router.navigate(['/auth'])
 }
 private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'Something went wrong. Please try again.'

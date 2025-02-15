@@ -19,8 +19,8 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { RouterService } from '../../services/router.service';
 import { DefaultButtonDirective } from '../../../directives/default-button.directive';
-import { FormComponent } from '../../form/form.component';
-
+// import { FormComponent } from '../../form/form.component';
+import { FormComponent } from '../../page-filling/form/form.component';
 @Component({
   selector: 'app-main-page',
   imports: [DefaultButtonDirective, FormComponent],
@@ -28,6 +28,16 @@ import { FormComponent } from '../../form/form.component';
   styleUrl: './main-page.component.css',
 })
 export class MainPageComponent implements OnInit, OnChanges {
+  findGroups = false
+  addGroups = false
+  mountBtn(event: any){
+    if(event === 'Add Groups') {
+this.addGroups = !this.addGroups
+    }
+    if(event === 'Find Groups'){
+this.findGroups = !this.findGroups
+    }
+  }
   private routerService = inject(RouterService);
   constructor(private route: ActivatedRoute) {}
   ngOnInit() {

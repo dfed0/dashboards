@@ -1,9 +1,11 @@
-import { AfterViewInit, Component, computed, effect, ElementRef, EventEmitter, inject, OnChanges, OnInit, output, Output, signal, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, computed, effect, ElementRef, EventEmitter, inject, OnChanges, OnDestroy, OnInit, output, Output, signal, SimpleChanges, ViewChild } from '@angular/core';
 import { UiService } from '../services/ui.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { RouterService } from '../services/router.service';
 import { SearchComponent } from "../search/search.component";
+import { AuthService } from '../auth/auth.service';
+import { DataStorageService } from '../shared/data-storage.service';
 // import { InputsService } from '../services/inputs.service';
 
 @Component({
@@ -22,15 +24,7 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   searchInputValue = new BehaviorSubject('')
   // inputsService = inject(InputsService)
   keyupEvent(value: any) {
-    // this.inputsService.inputAdd('searchInput', event)
-    // this.inputsService.inputs.subscribe(value => {
-      
-      // console.log('HEADER',value['searchInput'])
-      // this.searchInputValue.next(value['searchInput'])
       this.searchInputValue.next(value.target.value)
-    // })
-    // this.searchInputValue.next(this.searchInputValue.getValue() + event.key)
-    // console.log('VAL ', )
   }
   private routerService = inject(RouterService)
   private uiService = inject(UiService)// оптимизировать нужно
@@ -40,7 +34,7 @@ export class HeaderComponent implements OnInit, AfterViewInit{
         viewport: 0,
     })
     headerBlock = new BehaviorSubject(this.scroll.getValue().viewport > this.headerObject.height ? true : false)
-    
+   
   constructor(){ 
     this.uiService.scrollPosition.subscribe((value) => {
       this.scroll.next({viewport: value})
@@ -57,9 +51,12 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   
   }
  ngOnInit() {
-    // console.log('header!!!!!!!!!!! ')
+   
  }
-  
+ logout = output()
+  onLogout () {
+this.logout.emit()
+  }
  
   ngAfterViewInit() {
   this.headerObject.height = this.header.nativeElement.offsetHeight

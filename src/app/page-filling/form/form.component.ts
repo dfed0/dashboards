@@ -5,7 +5,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-form',
@@ -20,7 +20,7 @@ import { Component } from '@angular/core';
       state(
         'mount',
         style({
-          transform: 'translateY(0vh)',
+          // transform: 'translateY(0vh)', ???????????????????????????????
         })
       ),
       state(
@@ -39,12 +39,15 @@ import { Component } from '@angular/core';
   styleUrl: './form.component.css',
 })
 export class FormComponent {
+  formName = input<string>();
+  mount = output<string | undefined>();
   formState = 'mount';
   isMounted = true;
   backgroundClick() {
     this.formState = 'unmount';
     setTimeout(() => {
       this.isMounted = false;
+      this.mount.emit(this.formName());
     }, 500);
   }
 }

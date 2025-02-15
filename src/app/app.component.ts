@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, effect, ElementRef, HostListener, inject, input, Input, OnChanges, OnInit, signal, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, effect, ElementRef, HostListener, inject, input, Input, OnChanges, OnDestroy, OnInit, signal, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, Subscription } from 'rxjs';
 import { HeaderComponent } from "./header/header.component";
 import { MenuComponent } from './menu-components/menu/menu.component';
 import { UiService } from './services/ui.service';
@@ -10,6 +10,8 @@ import { RouterService } from './services/router.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { DataStorageService } from './shared/data-storage.service';
+import { AuthService } from './auth/auth.service';
 
 // почистить таймеры!!!
 @Component({
@@ -27,7 +29,7 @@ import { BrowserModule } from '@angular/platform-browser';
           //  'height': 'calc(100vh - var(--top-menu) - var(--bottom-menu))',
           // 'width': 'calc(100vw - var(--left-menu) - var(--right-menu))']
         'width': 'calc(100vw - var(--margin-left-text-area))',
-        'transform': 'translateX(0)'
+        // 'transform': 'translateX(0)'
         })),
         state('text-area', style({
           // 'margin-left': '0'
@@ -54,7 +56,7 @@ import { BrowserModule } from '@angular/platform-browser';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit, OnChanges{
+export class AppComponent implements OnInit, OnChanges, OnDestroy{
   firestore: Firestore = inject(Firestore)
   items$: Observable<any[]>
   btnEvent = new BehaviorSubject<any>(false)
@@ -90,7 +92,9 @@ onAnimate(){
   return
 }
 }
-  constructor(private route: Router){
+private userSub: Subscription
+isAuthenticated = false
+  constructor(private route: Router, private dataStorageService: DataStorageService, private authService: AuthService){
     const aCollection = collection(this.firestore, 'team-dashboard')
     this.items$ = collectionData(aCollection)
     this.items$.subscribe({
@@ -121,11 +125,20 @@ onAnimate(){
   this.routerService.takeAllPages([...this.route.config].filter(object => object.children)[0].children?.map(object => object.path))
   // avoid duplication
   // this.routerService.
+  this.userSub = this.authService.user.subscribe(user => {
+    this.isAuthenticated = !!user
+  })
   console.log('app INIT')
   
  }
+ ngOnDestroy() {
+  this.userSub.unsubscribe()
+}
  ngOnChanges(changes: SimpleChanges) {
    console.log('app: ', changes)
+ }
+ onLogout() {
+this.authService.logout()
  }
   eventConsume(event: string) {
     this.uiService.eventHandler(event)

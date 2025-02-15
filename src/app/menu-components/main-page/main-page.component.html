@@ -2,8 +2,13 @@
 <div class="page">
   <p>It seems like no groups are here...</p>
   <div class="buttons">
-    <button appDefaultButton fontSize="2">find groups</button>
-    <button appDefaultButton fontSize="2">add group</button>
+    <button appDefaultButton fontSize="2" (click)="mountBtn('Find Groups')">find groups</button>
+    <button appDefaultButton fontSize="2" (click)="mountBtn('Add Groups')">add group</button>
   </div>
 </div>
-<app-form />
+@if(findGroups){
+  <app-form formName="Find Groups" (mount)="mountBtn('Find Groups')"/>
+}
+@if(addGroups){
+  <app-form formName="Add Groups" (mount)="mountBtn('Add Groups')"/>
+}

@@ -1,0 +1,33 @@
+.card {
+  height: min-content;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  border: solid #e9e9e9;
+  padding: 5%;
+  gap: 5rem;
+  flex-wrap: wrap;
+}
+.more {
+  border: none;
+  background-color: #fcfaf8;
+  color: green;
+  cursor: pointer;
+  transition: all 2s;
+}
+.div-more {
+  display: flex;
+  justify-content: flex-end;
+}
+.dashboards-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.div-dashboard {
+  border: solid #000;
+  margin: 0.25rem;
+}
+.data {
+  border-top: solid #000;
+  height: min-content;
+}

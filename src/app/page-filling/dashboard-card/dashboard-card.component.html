@@ -1,0 +1,18 @@
+<div class="card">
+  <p>group name</p>
+
+  <div class="dashboards-group">
+    @for(group of groups(); track group; let i = $index){ @if(i < dashboards){
+    <div class="div-dashboard">
+      <p>{{ group }}</p>
+      <div class="data"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam, laudantium. Aliquid dolorem tenetur doloribus vel illum, corrupti magnam! Deleniti molestias itaque assumenda tempora fuga est quaerat autem nulla, quam voluptate.</p></div>
+    </div>
+    } }
+  </div>
+  <div class="div-more">
+    <button class="more" class="more" (click)="addDashboards()">
+      see more...
+    </button>
+  </div>
+  
+</div>

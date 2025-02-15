@@ -1,0 +1,20 @@
+<div class="blur">
+  <div class="transparency" (click)="backgroundClick()"></div>
+</div>
+<form [@formState]="formState" class="form">
+  <strong>{{  formName() }}</strong>
+  <div class="form-content">
+    <div class="form-raw">
+      <label>name</label>
+      <input />
+    </div>
+    <div class="form-raw">
+      <label>type</label>
+      <input />
+    </div>
+    <div class="form-raw">
+      <label>expiration time</label>
+      <input type="date" />
+    </div>
+  </div>
+</form>

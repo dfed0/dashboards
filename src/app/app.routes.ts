@@ -22,5 +22,5 @@ export const routes: Routes = [
     {path: 'colleagues', component: ColleaguesComponent},
     {path: 'events', component: EventsComponent},
     {path: 'auth', component: AuthComponent},
-    { path: '**', redirectTo: 'home' },
+    { path: '**', redirectTo: 'auth' },
 ];
